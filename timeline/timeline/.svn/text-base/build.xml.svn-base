@@ -1,0 +1,65 @@
+<project name="Timeline" default="compile" basedir=".">
+
+    <!-- Name of project and version -->
+    <property name="proj.name"      value="Timeline"/>
+    <property name="version"        value="010308"/>
+
+    <!-- Global properties for this build -->
+    <property name="src.java.dir"          value="src"/>
+	<property name="src.img.dir" 			value="${src.java.dir}/images" />
+    <property name="config.dir"            value="/home/robm/.timelinerc"/>
+	<property name="configfile.dir"        value="/home/robm/processing/TimeLine_010308"/>
+	<property name="config.file"           value="${configfile.dir}/config.xml"/>
+    <property name="lib.dir"               value="lib"/>
+    <property name="build.dir"             value="classes"/>
+	<property name="java.base"             value="/usr/lib/java/jdk1.5.0_15"/>
+	<property name="javac.lib"             value="${java.base}/lib"/>
+	
+    <!-- Classpath declaration -->
+    <path id="project.classpath" >
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+            <include name="**/*.zip"/>
+        </fileset>
+    	<fileset dir="${javac.lib}">
+    		<include name="**/tools.jar"/>
+    	</fileset>
+    </path>
+	
+    <!-- Clean up -->
+    <target name="clean" description="Clean the build directory">
+        <delete dir="${build.dir}"/>
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <!-- Compile Java source -->
+    <target name="compile">
+    	<mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.java.dir}"
+               destdir="${build.dir}"
+               classpathref="project.classpath" debug="true"/>
+    	<copy todir="${build.dir}/images" overwrite="true">
+    		<fileset dir="${src.img.dir}">
+    			<include name="**/*"/>
+    		</fileset>
+    	</copy>
+    </target>
+
+    <!-- Run Test -->
+    <target name="run" depends="compile"  description="Build and run Timeline">
+    	<property name="myclasspath" refid="project.classpath"/>
+    	<echo message="run Timeline OSC" >	</echo>
+    	<!--<echo message="java.lib : ${javac.lib}" >	</echo>
+    	<echo message="cp : ${myclasspath}" >	</echo> -->
+    	
+        <java fork="true"  classname="com.silicontransit.timeline.TimeLineApp" classpathref="project.classpath">
+        	<arg value="${config.file}" />
+            <classpath path="${build.dir}" />
+        	<classpath > <fileset file="${tools.lib}" /></classpath>
+        	<env key="AWT_TOOLKIT" value="MToolkit"/><!-- not really nessecary - tryig to solve compiz probs -->
+        </java>
+    </target>
+	
+
+
+</project>

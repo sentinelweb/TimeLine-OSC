@@ -1,0 +1,8 @@
+#!/bin/bash
+CLASSPATH=$JAVA_HOME/lib/tools.jar:$CLASSPATH
+echo "classpath:" $CLASSPATH
+export CLASSPATH
+cd ${0/\/timeline/}
+pwd
+java -cp $CLASSPATH -jar timeline.jar
+

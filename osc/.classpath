@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/robm/processing/processing-1.0/processing-0148/lib/antlr.jar"/>
+	<classpathentry kind="lib" path="/home/robm/processing/processing-1.0/processing-0148/lib/core.jar"/>
+	<classpathentry kind="lib" path="/home/robm/processing/processing-1.0/processing-0148/lib/ecj.jar"/>
+	<classpathentry kind="lib" path="/home/robm/processing/processing-1.0/processing-0148/lib/jna.jar"/>
+	<classpathentry kind="lib" path="/home/robm/processing/processing-1.0/processing-0148/lib/pde.jar"/>
+	<classpathentry kind="output" path="class"/>
+</classpath>
